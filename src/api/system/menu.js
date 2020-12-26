@@ -9,3 +9,13 @@ export function listMenu(query) {
         params: query
     })
 }
+
+
+//查询菜单树形数据
+export function listMenuTree(query) {
+    return request({
+        url: '/sys-menu-api/tree',
+        method: 'get',
+        params: query
+    })
+}

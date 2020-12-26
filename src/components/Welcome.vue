@@ -12,6 +12,7 @@
         <el-main>
           <!-- 主体 -->
           <my-home></my-home>
+<!--          <router-view></router-view>-->
         </el-main>
       </el-container>
     </el-container>

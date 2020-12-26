@@ -87,7 +87,7 @@ export default {
           //存储token
           window.sessionStorage.setItem('token', response.data.token)
           //跳转页面
-          this.$router.push('/home')
+          this.$router.push('/welcome')
         })
       })
     },
