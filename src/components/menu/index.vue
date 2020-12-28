@@ -63,14 +63,6 @@ export default {
     },
     handleSelect(index, indexPath) {
       console.log(index, indexPath);
-      // this.$router.replace({
-      //   path: "/welcome",
-      //   query: {
-      //     nextPath: index
-      //   }
-      // });
-      this.$router.push({path:'/welcome',query:{name: index}})
-      // this.$router.push(index)
     }
   },
 }
