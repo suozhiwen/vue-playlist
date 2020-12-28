@@ -11,8 +11,7 @@
         </el-aside>
         <el-main>
           <!-- 主体 -->
-          <my-home></my-home>
-<!--          <router-view></router-view>-->
+          <router-view></router-view>
         </el-main>
       </el-container>
     </el-container>
@@ -21,14 +20,12 @@
 
 <script>
 import myMenu from '@/components/menu/index'
-import myHome from '@/components/home/index'
 import myHeader from '@/components/header/index'
 // import request from '@/utils/request'
 
 export default {
   components: {
     myMenu,
-    myHome,
     myHeader,
   },
   data() {

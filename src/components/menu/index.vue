@@ -6,8 +6,9 @@
     </el-radio-group>
 
 
-    <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-             :collapse="isCollapse"  @select="handleSelect" :router="true">
+    <el-menu router :default-active="this.$route.path" class="el-menu-vertical-demo" @open="handleOpen"
+             @close="handleClose"
+             :collapse="isCollapse" @select="handleSelect">
 
       <template v-for="(item) in menuList">
         <el-submenu :index="String(item.menuId)">
@@ -17,7 +18,7 @@
           </template>
           <template v-if="item.sysMenuTreeVoList != null">
             <template v-for="(items) in item.sysMenuTreeVoList">
-              <el-menu-item :unique-opened=true  :index="items.component">{{items.menuName}}</el-menu-item>
+              <el-menu-item :unique-opened=true :index="items.path">{{ items.menuName }}</el-menu-item>
             </template>
           </template>
         </el-submenu>
@@ -34,12 +35,8 @@ import {listMenu, listMenuTree} from '@/api/system/menu';
 export default {
   data() {
     return {
-      menus: [
-        {id:1,name:"11",sumap:[{id:1,name:"1-1"},{id:2,name:"2-1"},{id:3,name:"3-1"}]},
-        {id:2,name:"22",sumap:[{id:1,name:"2-1"},{id:2,name:"2-2"},{id:3,name:"3-2"}]}
-      ],
       menuList: [],
-      isCollapse: false
+      isCollapse: false,
     }
   },
   created() {
@@ -64,9 +61,16 @@ export default {
       console.log("2")
       console.log(key, keyPath);
     },
-    handleSelect(index,indexPath){
-      console.log("3")
+    handleSelect(index, indexPath) {
       console.log(index, indexPath);
+      // this.$router.replace({
+      //   path: "/welcome",
+      //   query: {
+      //     nextPath: index
+      //   }
+      // });
+      this.$router.push({path:'/welcome',query:{name: index}})
+      // this.$router.push(index)
     }
   },
 }

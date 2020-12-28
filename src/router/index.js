@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 import Login from '../views/Login.vue'
+import Home from '../components/welcome.vue'
 
 Vue.use(VueRouter)
 
@@ -15,30 +15,41 @@ const routes = [
         path: '/login',
         component: Login
     },
-    // {path: '/welcome', component: () => import('../components/Welcome.vue')}
-    ,
-    {path: '/menu', component: () => import('../components/menu/index.vue')}
-    ,
     {path: '/header', component: () => import('../components/header/index.vue')}
     ,
-    {path: '/home', component: () => import('../components/home/index.vue')},
     {
         path: '/welcome',
-        // component:'/home',
+        component: Home,
         children: [
-            {path: '/system/role/index', component: () => import('../views/system/role/index.vue')}
+            {path: '/home', component: () => import('../components/home/index.vue')}
             ,
-            {path: '/system/menu/index', component: () => import('../views/system/menu/index.vue')}
+            {path: '/role', name: 'role', component: () => import('../views/system/role/index.vue')}
             ,
-            {path: '/system/dept/index', component: () => import('../views/system/dept/index.vue')},
-            {path: '/system/user/index', component: () => import('../views/system/user/index.vue')}
+            {path: '/menu', name: 'menu', component: () => import('../views/system/menu/index.vue')}
+            ,
+            {path: '/dept', name: 'dept', component: () => import('../views/system/dept/index.vue')}
+            ,
+            {path: '/user', name: 'user', component: () => import('../views/system/user/index.vue')}
         ]
     },
+
 ]
 
-const router = new VueRouter({
+// 路由配置
+const RouterConfig = {
+    mode: 'history', // require service support
+    scrollBehavior: () => ({
+        y: 0
+    }),
     routes
-})
+}
+
+const router = new VueRouter(RouterConfig)
+
+// const router = new VueRouter({
+//     routes
+// })
+
 
 //挂载路由导航守卫
 router.beforeEach((to, from, next) => {
@@ -57,4 +68,5 @@ router.beforeEach((to, from, next) => {
 })
 
 
-export default router
+
+export default router;
